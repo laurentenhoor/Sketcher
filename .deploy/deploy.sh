@@ -48,7 +48,7 @@ then
     SERVER_MONGO_PORT="27017"
     SERVER_MONGO_DBNAME="sketcher"
     SERVER_PORT="3001"
-    SERVER_ROOT_URL="http://"
+    SERVER_ROOT_URL="http://sketcher.org"
 else
     ############# Staging ###########
     DEPLOY_ENV="staging"
@@ -125,7 +125,7 @@ cd ${SERVER_APP_ROOT_PATH}/${SERVER_APP_DIR_NAME};
 export MONGO_URL=mongodb://${SERVER_MONGO_HOST}:${SERVER_MONGO_PORT}/${SERVER_MONGO_DBNAME};
 export PORT=$SERVER_PORT;
 export ROOT_URL=$SERVER_ROOT_URL;
-forever start --uid '${APP_NAME}' -a main.js;
+forever start --uid '${APP_NAME}' -a opt/${APP_NAME}/main.js;
 
 # end;
 echo 'If no error, ${APP_NAME} deployed and running on:';
