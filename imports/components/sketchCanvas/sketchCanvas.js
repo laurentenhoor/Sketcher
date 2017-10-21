@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import 'literallycanvas';
+import '../../../node_modules/literallycanvas/lib/js/literallycanvas-core';
 
 import template from './sketchCanvas.html';
 
@@ -15,8 +15,6 @@ class SketchCanvasController {
 		);
 		
 	}
-	
-	
 	
 }
 
