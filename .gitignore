@@ -1,1 +1,12 @@
-# Add any directories, files, or patterns you don't want to be tracked by version control
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.DS_Store
+.idea
+*.lnk
+.deploy/bundle
+.project
+.settings
+.classpath
