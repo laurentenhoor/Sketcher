@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import '../../../node_modules/literallycanvas/lib/js/literallycanvas-core';
+import './literallycanvas.scss';
 
 import template from './sketchCanvas.html';
 
