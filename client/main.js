@@ -25,7 +25,7 @@ class MainController {
 				$location.url('/'+canvasId);
 			}			
 			console.log('found id from url or localStorage: '+canvasId)
-
+			
 			Meteor.call('canvasExists', canvasId, function(err, canvasExists) {
 			
 				if (canvasExists) {
