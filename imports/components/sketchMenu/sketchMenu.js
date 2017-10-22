@@ -12,7 +12,15 @@ import style from './sketchMenu.scss';
 
 class SketcherMenuController {
 	
-	constructor() {
+	constructor($scope) {
+
+		this.isEraser = false;
+		
+		this.toggleTool = function() {
+			
+			this.isEraser = !this.isEraser;			
+			
+		}
 		
 	}
 	
@@ -24,5 +32,5 @@ export default angular.module('sketcher.sketchMenu', [
 ])
 .component('sketchMenu', {
 	templateUrl : template,
-	controller: [SketcherMenuController ],
+	controller: ['$scope', SketcherMenuController ],
 });

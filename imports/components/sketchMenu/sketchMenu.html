@@ -1,8 +1,15 @@
-<md-button class="md-fab md-primary md-fab-bottom-left">
-    <md-icon ng_bind="'edit'"></md-icon>
+<md-button 	ng-click="$ctrl.toggleTool()" 
+			class="md-fab md-primary md-fab-bottom-left" 
+			aria-label="Select Tool">
+
+    <md-icon md-font-set="material-icons">{{ $ctrl.isEraser ? 'edit' : 'remove'}}</md-icon>
 
 </md-button>
 
-<md-button class="md-fab md-secondary md-fab-bottom-right">
+
+<md-button 	class="md-fab md-secondary md-fab-bottom-right" 
+			aria-label="Share Sketch">
+    
     <md-icon ng_bind="'share'"></md-icon>
+
 </md-button>
