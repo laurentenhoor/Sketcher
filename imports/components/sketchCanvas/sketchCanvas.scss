@@ -1,5 +1,8 @@
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
 body {
+  position: relative !important;
 	margin:8px !important;
-	height: 100%; 
-	overflow: hidden;
 }

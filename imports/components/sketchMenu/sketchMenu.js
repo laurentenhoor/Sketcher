@@ -11,7 +11,7 @@ import style from './sketchMenu.scss';
 
 class SketcherMenuController {
 	
-	constructor($rootScope) {
+	constructor($rootScope, $mdToast) {
 		
 		this.isEraser = false;
 		
@@ -30,9 +30,13 @@ class SketcherMenuController {
 		}
 		
 		this.shareSketch = function() {
-			
-			alert('Coming soon!');
-			
+
+			$mdToast.show(
+		      $mdToast.simple()
+		      	.textContent('Sharing will be available soon!')		
+		      	.position('top left')
+		        .hideDelay(2000)
+		    );
 		}
 		
 	}
@@ -46,5 +50,5 @@ export default angular.module('sketcher.sketchMenu', [
 ])
 .component('sketchMenu', {
 	templateUrl : template,
-	controller: ['$rootScope', SketcherMenuController ],
+	controller: ['$rootScope', '$mdToast', SketcherMenuController ],
 });
