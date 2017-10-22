@@ -62,7 +62,7 @@ $selectedColor: lighten(#3cb0fd, 20%);
 .literally {
   position: relative;
   background-color: $canvasBackground;
-  min-height: 95vh;
+  min-height: 100vh;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
