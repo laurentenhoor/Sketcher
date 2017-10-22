@@ -14,11 +14,28 @@
 
 </md-button>
 
+<md-fab-speed-dial md-direction="up" class="md-fling md-fab-bottom-right">
 
-<md-button 	ng-click="$ctrl.shareSketch()"
-			class="md-fab md-secondary md-fab-bottom-right" 
-			aria-label="Share Sketch">
-    
-    <md-icon ng_bind="'share'"></md-icon>
+  <md-fab-trigger>
+   
+		<md-button class="md-fab md-secondary" aria-label="Share" ng-click="$ctrl.shareSketch()">
+		    <md-icon md-font-set="material-icons">image</md-icon>
+		</md-button>   
+   
+  </md-fab-trigger>
 
-</md-button>
+  <md-fab-actions>
+  
+<!-- 	 	<md-button class="md-fab md-secondary" aria-label="Share Image"
+	 		ng-click="$ctrl.shareSketch()">
+		    <md-icon md-font-set="material-icons">image</md-icon>
+		</md-button>    -->
+		
+		<!-- <md-button class="md-fab md-secondary" aria-label="Share Sketch"
+			ng-click="$ctrl.shareSketch()">
+		    <md-icon md-font-set="material-icons">supervisor_account</md-icon>
+		</md-button> -->
+
+  </md-fab-actions>
+  
+</md-fab-speed-dial>

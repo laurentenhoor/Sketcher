@@ -15,6 +15,7 @@ class SketcherMenuController {
 		
 		this.isEraser = false;
 		
+		
 		this.toggleTool = function() {
 			
 			this.isEraser = !this.isEraser;
@@ -30,13 +31,23 @@ class SketcherMenuController {
 		}
 		
 		this.shareSketch = function() {
-
-			$mdToast.show(
-		      $mdToast.simple()
-		      	.textContent('Sharing will be available soon!')		
-		      	.position('top left')
-		        .hideDelay(2000)
-		    );
+			
+			console.log('shareSketch()')
+			console.log($rootScope.canvas)
+			
+			try {
+				
+				var image = $rootScope.canvas.getImage().toDataURL('png');				
+				window.open(image);
+				
+				
+			} catch(error) {
+				console.log(error);
+			}
+			
+			 
+			
+			
 		}
 		
 	}
