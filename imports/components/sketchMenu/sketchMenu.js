@@ -45,7 +45,11 @@ class SketcherMenuController {
 				console.log(error);
 			}
 			
-			 
+		}
+		
+		this.clearSketch = function() {
+			
+			$rootScope.canvas.clear();
 			
 			
 		}

@@ -27,6 +27,8 @@ angular.module('sketcher', [
 		
 		const cookies = new Cookies();
 		
+		$rootScope.creatorSession = Random.id();
+		
 		$scope.$on('$routeChangeSuccess', function() {
 
 			console.log('from url: '+$routeParams.canvasId);
@@ -34,6 +36,7 @@ angular.module('sketcher', [
 			console.log('from cookies: '+cookies.get('canvasId'));
 			
 			var canvasId = $routeParams.canvasId || localStorage.getItem('canvasId') || cookies.get('canvasId');
+			
 			if (!$routeParams.canvasId) {
 				$location.url('/'+canvasId);
 				return;
