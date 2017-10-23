@@ -5,7 +5,6 @@ import angularRoute from 'angular-route';
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random'
 import { Cookies } from 'meteor/ostrio:cookies';
-import { Session } from 'meteor/session';
 
 import sketchCanvas from '../imports/components/sketchCanvas/sketchCanvas';
 import sketchMenu from '../imports/components/sketchMenu/sketchMenu';
@@ -57,21 +56,20 @@ angular.module('sketcher', [
 					console.log('canvasId does not exist in database')
 					
 					canvasId = localStorage.getItem('canvasId') || cookies.get('canvasId') || Random.id();
-					Sketches.insert({canvasId: canvasId});
-					
-					console.log('canvasId created in database: '+ canvasId);
+//					Sketches.insert({canvasId: canvasId, });
+//					console.log('canvasId created in database: '+ canvasId);
 					
 					$location.url('/'+canvasId);
-					return;
+//					return;
 					
 				}
 				
 				localStorage.setItem('canvasId', canvasId);
 				cookies.set('canvasId', canvasId);
-				Session.set('canvasId', canvasId);
 				
 				$rootScope.canvasId = canvasId;
 				console.log('active canvas: '+canvasId);
+				
 				
 			});
 

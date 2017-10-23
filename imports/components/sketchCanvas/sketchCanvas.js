@@ -78,6 +78,7 @@ class SketchCanvasController {
 		 function updateDrawing(sketch) {
 			 
 			 console.log('frameIdFromDb: ' + sketch.frameId)
+			 console.log('previousFrameId: ' +previousFrameId)
 			 console.log('thisFrameId: ' +thisFrameId)
 			 
 			 if(sketch.frameId != thisFrameId && sketch.frameId != previousFrameId ) {
