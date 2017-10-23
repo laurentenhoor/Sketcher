@@ -23,7 +23,6 @@ class SketchCanvasController {
 		
 		var thisSessionId = Random.id(); 
 		
-		
 		this.helpers({
 			sketches() {       
 				
@@ -65,6 +64,8 @@ class SketchCanvasController {
 		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
 		    	 	thisSessionId: thisSessionId
 		     });
+			 
+			 
 			
 		 });
 		 
