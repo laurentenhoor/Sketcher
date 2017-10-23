@@ -10,17 +10,18 @@ import './sketchCanvas.scss';
 import template 	from './sketchCanvas.html';
 
 import { Sketches } from '../../api/sketches.js';
+import { Random } from 'meteor/random'
 
 
 class SketchCanvasController {
 	
 	constructor($rootScope, $scope, $reactive) {
-	
 		
 		$reactive(this).attach($scope);		 
 		
 		$rootScope.tools = LC.tools;
 		
+		var thisSessionId = Random.id(); 
 		
 		
 		this.helpers({
@@ -32,7 +33,9 @@ class SketchCanvasController {
 					
 					var amountOfPosts = Sketches.find({}).count()
 					
-					var newestSketch = Sketches.findOne({canvasId: $rootScope.canvasId}, {sort: {createdAt: -1}, limit: 1});
+					var newestSketch = Sketches.findOne({canvasId: $rootScope.canvasId, 
+						thisSessionId: {$ne : thisSessionId}}, 
+						{sort: {createdAt: -1}, limit: 1});
 					
 					console.log(newestSketch)
 					if (newestSketch){
@@ -55,17 +58,12 @@ class SketchCanvasController {
 		
 		 $rootScope.canvas.on('drawEnd', function() {
 			 
-			 console.log(Sketches)
 			 console.log('drawing changed')
 			 
 		     Sketches.insert({
-		    	 
 		    	 	canvasId : $rootScope.canvasId,
 		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
-		    	 	createdAt: new Date(),
-		    	 	
-		     }, function(error, newCanvasId) {
-		    	 	console.log('inserted canvas: ' + newCanvasId)
+		    	 	thisSessionId: thisSessionId
 		     });
 			
 		 });
@@ -73,7 +71,7 @@ class SketchCanvasController {
 		 
 		 function updateDrawing(canvasData) {
 			 
-			 $rootScope.canvas.loadSnapshot(JSON.parse(canvasData), function(event){console.log(event)});
+			 $rootScope.canvas.loadSnapshot(JSON.parse(canvasData));
 			 
 		 }
 		
