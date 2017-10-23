@@ -5,6 +5,7 @@ import angularRoute from 'angular-route';
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random'
 import { Cookies } from 'meteor/ostrio:cookies';
+import { Session } from 'meteor/session';
 
 import sketchCanvas from '../imports/components/sketchCanvas/sketchCanvas';
 import sketchMenu from '../imports/components/sketchMenu/sketchMenu';
@@ -67,6 +68,7 @@ angular.module('sketcher', [
 				
 				localStorage.setItem('canvasId', canvasId);
 				cookies.set('canvasId', canvasId);
+				Session.set('canvasId', canvasId);
 				
 				$rootScope.canvasId = canvasId;
 				console.log('active canvas: '+canvasId);

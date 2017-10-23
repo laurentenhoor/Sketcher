@@ -7,7 +7,7 @@ import * as LC from'../../lib/literallycanvas/literallycanvas-core-customized';
 import './literallycanvas.scss';
 import './sketchCanvas.scss';
 
-import template from './sketchCanvas.html';
+import template 	from './sketchCanvas.html';
 
 import { Sketches } from '../../api/sketches.js';
 
@@ -20,18 +20,30 @@ class SketchCanvasController {
 		$reactive(this).attach($scope);		 
 		
 		$rootScope.tools = LC.tools;
-
+		
+		
 		
 		this.helpers({
 			sketches() {       
-				var amountOfPosts = Sketches.find({}).count();
 				
-				var newestSketch = Sketches.findOne({}, {sort: {createdAt: -1, limit: 1}});
-				console.log(newestSketch)
-				if (newestSketch){
-					updateDrawing(newestSketch.canvasData);	
-				}
-				return amountOfPosts;
+				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()){
+					
+					console.log('sketches helper');
+					
+					var amountOfPosts = Sketches.find({}).count()
+					
+					var newestSketch = Sketches.findOne({canvasId: $rootScope.canvasId}, {sort: {createdAt: -1}, limit: 1});
+					
+					console.log(newestSketch)
+					if (newestSketch){
+						console.log('update drawing')
+						updateDrawing(newestSketch.canvasData);	
+					}
+					return amountOfPosts;
+					
+				};
+						
+				
 			}
 		});
 		
@@ -52,6 +64,8 @@ class SketchCanvasController {
 		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
 		    	 	createdAt: new Date(),
 		    	 	
+		     }, function(error, newCanvasId) {
+		    	 	console.log('inserted canvas: ' + newCanvasId)
 		     });
 			
 		 });

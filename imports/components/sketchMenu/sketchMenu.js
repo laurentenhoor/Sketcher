@@ -11,7 +11,7 @@ import style from './sketchMenu.scss';
 
 class SketcherMenuController {
 	
-	constructor($rootScope, $mdToast) {
+	constructor($rootScope, $mdToast, $timeout) {
 		
 		this.isEraser = false;
 		
@@ -51,6 +51,12 @@ class SketcherMenuController {
 			
 			$rootScope.canvas.clear();
 			
+			$rootScope.canvas.trigger('drawEnd', {});
+
+			$timeout(10, function() {
+			});
+			return;
+			
 			
 		}
 		
@@ -65,5 +71,5 @@ export default angular.module('sketcher.sketchMenu', [
 ])
 .component('sketchMenu', {
 	templateUrl : template,
-	controller: ['$rootScope', '$mdToast', SketcherMenuController ],
+	controller: ['$rootScope', '$mdToast', '$timeout', SketcherMenuController ],
 });
