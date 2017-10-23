@@ -11,8 +11,6 @@ Sketches.before.insert(function (userId, doc) {
 	}
 });
 
-
-
 if(Meteor.isServer) {
 
 	Meteor.publish('lastSketches', function(canvasId){

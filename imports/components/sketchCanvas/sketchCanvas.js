@@ -21,7 +21,8 @@ class SketchCanvasController {
 		
 		$rootScope.tools = LC.tools;
 		
-		var thisSessionId = Random.id(); 
+		var thisFrameId; 
+		var previousFrameId;
 		
 		this.helpers({
 			sketches() {       
@@ -32,14 +33,15 @@ class SketchCanvasController {
 					
 					var amountOfPosts = Sketches.find({}).count()
 					
-					var newestSketch = Sketches.findOne({canvasId: $rootScope.canvasId, 
-						thisSessionId: {$ne : thisSessionId}}, 
-						{sort: {createdAt: -1}, limit: 1});
+					var newestSketch = Sketches.findOne({canvasId: $rootScope.canvasId},
+							{sort: {createdAt: -1}, limit: 1}); 
+//						frameId: {$ne : thisFrameId}}, 
 					
 					console.log(newestSketch)
 					if (newestSketch){
 						console.log('update drawing')
-						updateDrawing(newestSketch.canvasData);	
+						updateDrawing(newestSketch);	
+						previousFrameId = newestSketch.frameId;
 					}
 					return amountOfPosts;
 					
@@ -57,22 +59,35 @@ class SketchCanvasController {
 		
 		 $rootScope.canvas.on('drawEnd', function() {
 			 
-			 console.log('drawing changed')
+			 console.log('drawEnd Event')
 			 
+			 thisFrameId = Random.id();
 		     Sketches.insert({
 		    	 	canvasId : $rootScope.canvasId,
 		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
-		    	 	thisSessionId: thisSessionId
+		    	 	frameId: thisFrameId
 		     });
 			 
 			 
+			 
+			 console.log('insert Sketch, frameId: ' + thisFrameId);
 			
 		 });
 		 
 		 
-		 function updateDrawing(canvasData) {
+		 function updateDrawing(sketch) {
 			 
-			 $rootScope.canvas.loadSnapshot(JSON.parse(canvasData));
+			 console.log('frameIdFromDb: ' + sketch.frameId)
+			 console.log('thisFrameId: ' +thisFrameId)
+			 
+			 if(sketch.frameId != thisFrameId && sketch.frameId != previousFrameId ) {
+				 $rootScope.canvas.loadSnapshot(JSON.parse(sketch.canvasData));
+				 return;
+			 } else {
+				 return;
+			 }
+			 
+			 
 			 
 		 }
 		
