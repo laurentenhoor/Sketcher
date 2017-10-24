@@ -17,17 +17,20 @@ class SketchCanvasController {
 	
 	constructor($rootScope, $scope, $reactive) {
 		
-		$reactive(this).attach($scope);		 
+		var $ctrl = this;
+		$reactive($ctrl).attach($scope);		 
 		
 		$rootScope.tools = LC.tools;
 		
 		var thisFrameId; 
 		var previousFrameId;
 		
-		this.helpers({
+		$ctrl.showLoader = true;
+		
+		$ctrl.helpers({
 			sketches() {       
 				
-				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()){
+				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()) {
 					
 					console.log('sketches helper');
 					
@@ -42,6 +45,7 @@ class SketchCanvasController {
 						console.log('update drawing')
 						updateDrawing(newestSketch);	
 						previousFrameId = newestSketch.frameId;
+						
 					}
 					return amountOfPosts;
 					
@@ -50,6 +54,9 @@ class SketchCanvasController {
 				
 			}
 		});
+		
+		$ctrl.canvasSnapshotPngBase64 = 'henk'
+		
 		
 		
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0],
@@ -67,9 +74,11 @@ class SketchCanvasController {
 		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
 		    	 	frameId: thisFrameId
 		     });
-			 
-			 
-			 
+		     
+		     
+		     setOpenGraphHeaders();
+		    
+			  
 			 console.log('insert Sketch, frameId: ' + thisFrameId);
 			
 		 });
@@ -80,6 +89,8 @@ class SketchCanvasController {
 			 console.log('frameIdFromDb: ' + sketch.frameId)
 			 console.log('previousFrameId: ' +previousFrameId)
 			 console.log('thisFrameId: ' +thisFrameId)
+			 
+			 $ctrl.showLoader = false;
 			 
 			 if(sketch.frameId != thisFrameId && sketch.frameId != previousFrameId ) {
 				 $rootScope.canvas.loadSnapshot(JSON.parse(sketch.canvasData));
