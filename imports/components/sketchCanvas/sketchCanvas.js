@@ -55,9 +55,6 @@ class SketchCanvasController {
 			}
 		});
 		
-		$ctrl.canvasSnapshotPngBase64 = 'henk'
-		
-		
 		
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0],
 				{imageURLPrefix: '/literallycanvas_img'}
