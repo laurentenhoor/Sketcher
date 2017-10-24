@@ -30,6 +30,11 @@ class SketcherMenuController {
 				
 		}
 		
+		this.clickMenu = function(event) {
+			console.log(event);
+//			event.target.
+		}
+		
 		this.shareSketch = function() {
 			
 			console.log('shareSketch()')
@@ -37,8 +42,23 @@ class SketcherMenuController {
 			
 			try {
 				
-				var image = $rootScope.canvas.getImage().toDataURL('png');				
-				window.open(image);
+				
+				
+				var image = $rootScope.canvas.getImage().toDataURL('png');
+//				var url = image.replace(/^data:image\/png;/, 'data:application/octet-stream;filename=whiteboard.png,');
+				
+				var link = document.createElement('a');
+				link.download = 'instantwhiteboard.png';
+		        link.href = image;
+		        link.click();
+		        document.body.removeChild(link);
+//		        
+//				window.open(image, '_self');
+				
+				
+//				console.log(image)
+//				console.log(url)
+//				window.open(image);
 				
 				
 			} catch(error) {

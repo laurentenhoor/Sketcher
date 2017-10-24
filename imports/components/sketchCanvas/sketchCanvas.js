@@ -32,6 +32,8 @@ class SketchCanvasController {
 				
 				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()) {
 					
+					$ctrl.showLoader = false;
+					
 					console.log('sketches helper');
 					
 					var amountOfPosts = Sketches.find({}).count()
@@ -72,9 +74,6 @@ class SketchCanvasController {
 		    	 	frameId: thisFrameId
 		     });
 		     
-		     
-		     setOpenGraphHeaders();
-		    
 			  
 			 console.log('insert Sketch, frameId: ' + thisFrameId);
 			
