@@ -11,6 +11,8 @@ import sketchMenu from '../imports/components/sketchMenu/sketchMenu';
 
 import { Sketches } from '../imports/api/sketches.js';
 
+import shortid from 'shortid';
+
 
 angular.module('sketcher', [
 
@@ -37,9 +39,11 @@ angular.module('sketcher', [
 			
 			var canvasId = $routeParams.canvasId || localStorage.getItem('canvasId') || cookies.get('canvasId');
 			
-			if (!$routeParams.canvasId) {
+			if (!$routeParams.canvasId && (localStorage.getItem('canvasId') || cookies.get('canvasId'))) {
 				$location.url('/'+canvasId);
 				return;
+			} else {
+//				canvasId = shortid.generate();
 			}
 			
 			console.log('found id from url, localStorage or cookie: ' + canvasId)
@@ -55,9 +59,7 @@ angular.module('sketcher', [
 					
 					console.log('canvasId does not exist in database')
 					
-					canvasId = localStorage.getItem('canvasId') || cookies.get('canvasId') || Random.id();
-//					Sketches.insert({canvasId: canvasId, });
-//					console.log('canvasId created in database: '+ canvasId);
+					canvasId = localStorage.getItem('canvasId') || cookies.get('canvasId') || shortid.generate();
 					
 					$location.url('/'+canvasId);
 //					return;
