@@ -27,6 +27,12 @@ angular.module('sketcher', [
 	.controller('MainController', ['$rootScope', '$scope', '$routeParams', '$location',
 		function($rootScope, $scope, $routeParams, $location) {
 		
+		
+		var $ctrl = this;
+		
+		
+		$ctrl.showLoader = true;
+		
 		const cookies = new Cookies();
 		
 		$rootScope.creatorSession = Random.id();
@@ -73,9 +79,32 @@ angular.module('sketcher', [
 				console.log('active canvas: '+canvasId);
 				
 				
+				loadCanvas();
+				
 			});
 
 		});
+		
+		
+		function loadCanvas() {
+			
+			Meteor.call('getLatestSketch', $rootScope.canvasId, function(err, latestSketch) {	
+				
+				console.log('getLatestSketch with id: ' + $rootScope.canvasId);
+				
+				console.log(latestSketch)
+				if (latestSketch){
+					console.log('update drawing')
+
+					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
+					 $ctrl.showLoader = false;
+				
+					
+				}
+				
+			});
+		}
+	
 		
 	}])
 	

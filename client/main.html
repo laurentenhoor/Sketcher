@@ -15,4 +15,12 @@
   	
   	<sketch-menu></sketch-menu>
 
+
+
+	 <div ng-show="$ctrl.showLoader" style="width: 100px;height: 100px;position: fixed;top: 50%;left: 50%;margin-left: -50px;margin-top: -50px;">
+	       <md-progress-circular class="md-accent" ng-disable="!$ctrl.showLoader" md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+	 </div>
+	 
+	 
+
 </body>
