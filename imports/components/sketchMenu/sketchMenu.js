@@ -12,41 +12,34 @@ class SketcherMenuController {
 		
 		$ctrl = this;
 		
-		console.log($rootScope.canvas.tool);
-		console.log($rootScope.canvas);
-		console.log(LC);
-		
-//		$rootScope.canvas.colors.primary = 'hsla(90%, 90%, 90%, 0.3)';
-//		$rootScope.canvas.opts.primaryColor = 'hsla(90%, 90%, 90%, 0.3)';
-		console.log($rootScope.canvas);
-		
-		
-		
 		
 		$ctrl.setPen = function() {
 			resetTools();
 			$ctrl.isPen = true;
+			
 			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
+			$rootScope.canvas.setColor('primary', 'hsla(0, 0%, 0%, 0.8)');
 			$rootScope.canvas.tool.strokeWidth = 2;
+			
 		}
+		
 		
 		$ctrl.setMarker = function() {
 			resetTools();
 			$ctrl.isMarker = true;
 			
-//			$rootScope.canvas.setColor('primary', 'rgba(0.9, 0.9, 0.9, 0.3)');
-			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));		
+			
+			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
+			$rootScope.canvas.setColor('primary', 'hsla(0, 0%, 0%, 0.3)');
 			$rootScope.canvas.tool.strokeWidth = 23;
 
-			
-			console.log($rootScope.canvas.tool)
 		}
 		
 		$ctrl.setEraser = function() {
 			resetTools();
 			$ctrl.isEraser = true;
 			$rootScope.canvas.setTool(new $rootScope.tools.Eraser($rootScope.canvas));
-			$rootScope.canvas.tool.strokeWidth = 30;
+			$rootScope.canvas.tool.strokeWidth = 50;
 			
 		}
 		

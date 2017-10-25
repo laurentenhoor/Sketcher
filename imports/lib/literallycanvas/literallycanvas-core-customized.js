@@ -45,7 +45,7 @@ module.exports = LiterallyCanvas = (function() {
       zoomStep: opts.zoomStep || 0.2
     };
     this.colors = {
-      primary: opts.primaryColor || '#000',
+      primary: opts.primaryColor || 'hls',
       secondary: opts.secondaryColor || '#fff',
       background: opts.backgroundColor || 'transparent'
     };

@@ -36,8 +36,7 @@ class SketchCanvasController {
 		
 			
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0], {
-			imageURLPrefix: '/literallycanvas_img',
-			primaryColor: '#e62e2e'
+			imageURLPrefix: '/literallycanvas_img'			
 			}
 		);
 		
