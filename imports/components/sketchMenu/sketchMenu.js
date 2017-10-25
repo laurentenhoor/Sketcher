@@ -10,61 +10,74 @@ class SketcherMenuController {
 	
 	constructor($rootScope, $mdToast, $timeout) {
 		
-		this.isEraser = false;
+		$ctrl = this;
+		
+		console.log($rootScope.canvas.tool);
+		console.log($rootScope.canvas);
+		console.log(LC);
+		
+//		$rootScope.canvas.colors.primary = 'hsla(90%, 90%, 90%, 0.3)';
+//		$rootScope.canvas.opts.primaryColor = 'hsla(90%, 90%, 90%, 0.3)';
+		console.log($rootScope.canvas);
 		
 		
-		this.toggleTool = function() {
-			
-			this.isEraser = !this.isEraser;
-			
-			if (this.isEraser) {
-				$rootScope.canvas.setTool(new $rootScope.tools.Eraser($rootScope.canvas));
-				$rootScope.canvas.tool.strokeWidth = 30;
-			} else {
-				$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
-				$rootScope.canvas.tool.strokeWidth = 5;
-			}
-				
+		
+		
+		$ctrl.setPen = function() {
+			resetTools();
+			$ctrl.isPen = true;
+			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
+			$rootScope.canvas.tool.strokeWidth = 2;
 		}
 		
-		this.clickMenu = function(event) {
-			console.log(event);
-//			event.target.
+		$ctrl.setMarker = function() {
+			resetTools();
+			$ctrl.isMarker = true;
+			
+//			$rootScope.canvas.setColor('primary', 'rgba(0.9, 0.9, 0.9, 0.3)');
+			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));		
+			$rootScope.canvas.tool.strokeWidth = 23;
+
+			
+			console.log($rootScope.canvas.tool)
 		}
 		
-		this.shareSketch = function() {
+		$ctrl.setEraser = function() {
+			resetTools();
+			$ctrl.isEraser = true;
+			$rootScope.canvas.setTool(new $rootScope.tools.Eraser($rootScope.canvas));
+			$rootScope.canvas.tool.strokeWidth = 30;
+			
+		}
+		
+		function resetTools() {
+			$ctrl.isEraser = false;
+			$ctrl.isPen = false;
+			$ctrl.isMarker = false;
+		}
+		
+		
+		$ctrl.shareSketch = function() {
 			
 			console.log('shareSketch()')
 			console.log($rootScope.canvas)
 			
 			try {
 				
-				
-				
 				var image = $rootScope.canvas.getImage().toDataURL('png');
-//				var url = image.replace(/^data:image\/png;/, 'data:application/octet-stream;filename=whiteboard.png,');
 				
 				var link = document.createElement('a');
 				link.download = 'instantwhiteboard.png';
 		        link.href = image;
 		        link.click();
-		        document.body.removeChild(link);
-//		        
-//				window.open(image, '_self');
-				
-				
-//				console.log(image)
-//				console.log(url)
-//				window.open(image);
-				
-				
+		
 			} catch(error) {
 				console.log(error);
 			}
 			
 		}
 		
-		this.clearSketch = function() {
+		$ctrl.clearSketch = function() {
 			
 			$rootScope.canvas.clear();
 			
@@ -73,9 +86,10 @@ class SketcherMenuController {
 			$timeout(10, function() {
 			});
 			return;
-			
-			
+
 		}
+		
+		$ctrl.setPen();
 		
 	}
 	

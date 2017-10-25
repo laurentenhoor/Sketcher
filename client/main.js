@@ -38,12 +38,11 @@ class MainController {
 			
 			Meteor.call('getLatestSketch', canvasId, function(err, latestSketch) {	
 		
-				if (latestSketch){
-					console.log('update drawing')
-
-					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
-					 $ctrl.showLoader = false;
+				$ctrl.showLoader = false;
 				
+				if (latestSketch){
+					console.log('update drawing');
+					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
 				}
 				
 			});

@@ -7,6 +7,8 @@ import * as LC from'../../lib/literallycanvas/literallycanvas-core-customized';
 import './literallycanvas.scss';
 import './sketchCanvas.scss';
 
+import sizeof from 'object-sizeof';
+
 import template 	from './sketchCanvas.html';
 
 import { Sketches } from '../../api/sketches.js';
@@ -26,7 +28,6 @@ class SketchCanvasController {
 		var previousFrameId;
 		
 		
-		
 		$ctrl.helpers({
 			sketches() {       
 						
@@ -34,8 +35,10 @@ class SketchCanvasController {
 		});
 		
 			
-		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0],
-				{imageURLPrefix: '/literallycanvas_img'}
+		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0], {
+			imageURLPrefix: '/literallycanvas_img',
+			primaryColor: '#e62e2e'
+			}
 		);
 		
 		
@@ -44,18 +47,18 @@ class SketchCanvasController {
 			 console.log('drawEnd Event')
 			 
 			 thisFrameId = Random.id();
-		     Sketches.insert({
-		    	 	canvasId : $rootScope.canvasId,
-		    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
-		    	 	frameId: thisFrameId
-		     });
+			 
+			 var snapShotObject = {
+			    	 	canvasId : $rootScope.canvasId,
+			    	 	canvasData: JSON.stringify($rootScope.canvas.getSnapshot()),
+			    	 	frameId: thisFrameId
+			     }
+		     Sketches.insert(snapShotObject);
 		     
-		   
 			 console.log('insert Sketch, frameId: ' + thisFrameId);
+//			 console.log('filesize: ' + Math.ceil(sizeof(snapShotObject)/1000) + 'KB')
 			
 		 });
-		 
-		 
 
 		
 	}
