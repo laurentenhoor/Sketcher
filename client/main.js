@@ -2,6 +2,10 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
+import angularMaterial from 'angular-material';
+import angularMaterialStyle from '../node_modules/angular-material/angular-material.css';
+
+
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random'
 import { Cookies } from 'meteor/ostrio:cookies';
@@ -14,22 +18,12 @@ import { Sketches } from '../imports/api/sketches.js';
 import shortid from 'shortid';
 
 
-angular.module('sketcher', [
-
-	angularMeteor,
-	angularRoute,
-
-	sketchCanvas.name,
-	sketchMenu.name,
-
-	])
-
-	.controller('MainController', ['$rootScope', '$scope', '$routeParams', '$location',
-		function($rootScope, $scope, $routeParams, $location) {
-		
-		
+class MainController {
+	
+	constructor($rootScope, $scope, $routeParams, $location, $reactive) {
+	
 		var $ctrl = this;
-		
+		$reactive($ctrl).attach($scope);		
 		
 		$ctrl.showLoader = true;
 		
@@ -99,15 +93,31 @@ angular.module('sketcher', [
 					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
 					 $ctrl.showLoader = false;
 				
-					
 				}
 				
 			});
 		}
-	
 		
-	}])
+		
+		
+	}
 	
+	
+	
+}
+
+
+angular.module('sketcher', [
+
+	angularMeteor,
+	angularRoute,
+	angularMaterial,
+
+	sketchCanvas.name,
+	sketchMenu.name,
+
+	])
+	.controller('MainController', ['$rootScope', '$scope', '$routeParams', '$location', '$reactive', MainController])
 	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 		$locationProvider.html5Mode(true);
@@ -120,6 +130,5 @@ angular.module('sketcher', [
 		.when('/', {
 			controller : 'MainController'
 		});	
-
+		
 	}]);
-	

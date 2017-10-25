@@ -1,9 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import angularMaterial from 'angular-material';
-import angularMaterialStyle from '../../../node_modules/angular-material/angular-material.css';
-
 
 import template from './sketchMenu.html';
 import style from './sketchMenu.scss';
@@ -87,7 +84,6 @@ class SketcherMenuController {
 
 export default angular.module('sketcher.sketchMenu', [
   angularMeteor,
-  angularMaterial,
 ])
 .component('sketchMenu', {
 	templateUrl : template,
