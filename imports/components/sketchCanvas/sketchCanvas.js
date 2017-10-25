@@ -30,7 +30,7 @@ class SketchCanvasController {
 		$ctrl.helpers({
 			sketches() {       
 				
-				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()) {
+				if (Meteor.subscribe('lastSketches', $rootScope.canvasId).ready()){
 					
 					$ctrl.showLoader = false;
 					
@@ -57,6 +57,9 @@ class SketchCanvasController {
 			}
 		});
 		
+		$ctrl.canvasSnapshotPngBase64 = 'henk'
+		
+		
 		
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0],
 				{imageURLPrefix: '/literallycanvas_img'}
@@ -74,7 +77,7 @@ class SketchCanvasController {
 		    	 	frameId: thisFrameId
 		     });
 		     
-			  
+		   
 			 console.log('insert Sketch, frameId: ' + thisFrameId);
 			
 		 });
@@ -86,10 +89,11 @@ class SketchCanvasController {
 			 console.log('previousFrameId: ' +previousFrameId)
 			 console.log('thisFrameId: ' +thisFrameId)
 			 
-			 $ctrl.showLoader = false;
+			 
 			 
 			 if(sketch.frameId != thisFrameId && sketch.frameId != previousFrameId ) {
 				 $rootScope.canvas.loadSnapshot(JSON.parse(sketch.canvasData));
+				 $ctrl.showLoader = false;
 				 return;
 			 } else {
 				 return;
@@ -98,6 +102,7 @@ class SketchCanvasController {
 			 
 			 
 		 }
+		 
 		
 	}
 }
