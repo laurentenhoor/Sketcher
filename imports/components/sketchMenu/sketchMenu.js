@@ -5,21 +5,38 @@ import angularMeteor from 'angular-meteor';
 import template from './sketchMenu.html';
 import style from './sketchMenu.scss';
 
+import { Cookies } from 'meteor/ostrio:cookies';
+const cookies = new Cookies();
+import shortid from 'shortid';
+
+
+
 
 class SketcherMenuController {
 	
-	constructor($rootScope, $mdToast, $timeout) {
+	constructor($rootScope, $mdToast, $timeout, $location) {
 		
 		$ctrl = this;
 		
+		
+		$ctrl.setPencil = function() {
+			resetTools();
+			$ctrl.isPencil = true;
+			
+			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
+			$rootScope.canvas.setColor('primary', 'hsla(0, 0%, 0%, 0.3)');
+			$rootScope.canvas.tool.strokeWidth = 2;
+			
+		}
+		$ctrl.setPencil();
 		
 		$ctrl.setPen = function() {
 			resetTools();
 			$ctrl.isPen = true;
 			
 			$rootScope.canvas.setTool(new $rootScope.tools.Pencil($rootScope.canvas));
-			$rootScope.canvas.setColor('primary', 'hsla(0, 0%, 0%, 0.8)');
-			$rootScope.canvas.tool.strokeWidth = 2;
+			$rootScope.canvas.setColor('primary', 'hsla(0, 0%, 0%, 0.7)');
+			$rootScope.canvas.tool.strokeWidth = 3;
 			
 		}
 		
@@ -39,7 +56,7 @@ class SketcherMenuController {
 			resetTools();
 			$ctrl.isEraser = true;
 			$rootScope.canvas.setTool(new $rootScope.tools.Eraser($rootScope.canvas));
-			$rootScope.canvas.tool.strokeWidth = 50;
+			$rootScope.canvas.tool.strokeWidth = 33;
 			
 		}
 		
@@ -47,6 +64,7 @@ class SketcherMenuController {
 			$ctrl.isEraser = false;
 			$ctrl.isPen = false;
 			$ctrl.isMarker = false;
+			$ctrl.isPencil = false;
 		}
 		
 		
@@ -60,7 +78,7 @@ class SketcherMenuController {
 				var image = $rootScope.canvas.getImage().toDataURL('png');
 				
 				var link = document.createElement('a');
-				link.download = 'instantwhiteboard.png';
+				link.download = 'ScreenSketch'+$rootScope.canvasId+'.png';
 		        link.href = image;
 		        link.click();
 		
@@ -71,10 +89,19 @@ class SketcherMenuController {
 		}
 		
 		$ctrl.clearSketch = function() {
+		
 			
 			$rootScope.canvas.clear();
+//			$rootScope.canvas.trigger('drawEnd', {});
 			
-			$rootScope.canvas.trigger('drawEnd', {});
+			var canvasId = shortid.generate();
+			console.log(canvasId)
+			
+	    		localStorage.setItem('canvasId', canvasId);
+			cookies.set('canvasId', canvasId);
+	    		$rootScope.canvasId = canvasId;
+	    		$location.url('/'+canvasId);
+	    	
 
 			$timeout(10, function() {
 			});
@@ -82,7 +109,7 @@ class SketcherMenuController {
 
 		}
 		
-		$ctrl.setPen();
+		$ctrl.setPencil();
 		
 	}
 	
@@ -94,5 +121,5 @@ export default angular.module('sketcher.sketchMenu', [
 ])
 .component('sketchMenu', {
 	templateUrl : template,
-	controller: ['$rootScope', '$mdToast', '$timeout', SketcherMenuController ],
+	controller: ['$rootScope', '$mdToast', '$timeout', '$location', SketcherMenuController ],
 });

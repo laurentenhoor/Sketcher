@@ -27,7 +27,6 @@ class SketchCanvasController {
 		var thisFrameId; 
 		var previousFrameId;
 		
-		
 		$ctrl.helpers({
 			sketches() {       
 						
@@ -36,14 +35,15 @@ class SketchCanvasController {
 		
 			
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0], {
-			imageURLPrefix: '/literallycanvas_img'			
+			imageURLPrefix: '/literallycanvas_img',
+			primaryColor: 'hsla(0, 0%, 0%, 0.3)'
 			}
 		);
 		
 		
 		 $rootScope.canvas.on('drawEnd', function() {
 			 
-			 console.log('drawEnd Event')
+//			 console.log('drawEnd Event')
 			 
 			 thisFrameId = Random.id();
 			 
@@ -54,7 +54,7 @@ class SketchCanvasController {
 			     }
 		     Sketches.insert(snapShotObject);
 		     
-			 console.log('insert Sketch, frameId: ' + thisFrameId);
+//			 console.log('insert Sketch, frameId: ' + thisFrameId);
 //			 console.log('filesize: ' + Math.ceil(sizeof(snapShotObject)/1000) + 'KB')
 			
 		 });

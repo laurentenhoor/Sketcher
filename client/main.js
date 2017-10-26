@@ -21,8 +21,6 @@ class MainController {
 		
 		var $ctrl = this;
 		$ctrl.showLoader = true;
-		
-		console.log(loginSessionService)
 
 		$rootScope.$on('$routeChangeSuccess', function() {
 			
@@ -38,14 +36,22 @@ class MainController {
 			
 			Meteor.call('getLatestSketch', canvasId, function(err, latestSketch) {	
 		
-				$ctrl.showLoader = false;
+				$rootScope.$apply(function() {
+					hideLoader();
+				})
 				
+			
 				if (latestSketch){
 					console.log('update drawing');
 					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
+					 
 				}
 				
 			});
+		}
+	
+		function hideLoader() {
+			$ctrl.showLoader = false;
 		}
 		
 	}
