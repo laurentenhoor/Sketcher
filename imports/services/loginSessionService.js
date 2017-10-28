@@ -20,7 +20,7 @@ class LoginSessionService {
 			
 	    function login(canvasIdFromUrl, callback) {
 	    	
-	    		console.log('from url: '+canvasIdFromUrl);
+	    	console.log('from url: '+canvasIdFromUrl);
 			console.log('from localStorage: '+localStorage.getItem('canvasId'));
 			console.log('from cookies: '+cookies.get('canvasId'));
 			
@@ -44,6 +44,7 @@ class LoginSessionService {
 					console.log('canvasId does not exist in database')
 					
 					canvasId = localStorage.getItem('canvasId') || cookies.get('canvasId') || shortid.generate();
+					
 					$location.url('/'+canvasId);
 					
 					
@@ -54,6 +55,11 @@ class LoginSessionService {
 				
 				$rootScope.canvasId = canvasId;
 				console.log('active canvas: '+canvasId);
+				
+				if (canvasId == 'undefined' || canvasId == undefined || canvasId == null) {
+					canvasId = shortid.generate();
+					$location.url('/'+canvasId);
+				}
 				
 				callback(canvasId)
 				
