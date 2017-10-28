@@ -2,6 +2,8 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
+import angularOnce from 'ng-once';
+
 import angularMaterial from 'angular-material';
 import angularMaterialStyle from '../node_modules/angular-material/angular-material.css';
 
@@ -22,11 +24,18 @@ class MainController {
 		var $ctrl = this;
 		$ctrl.showLoader = true;
 
-		$rootScope.$on('$routeChangeSuccess', function() {
+		 $rootScope.$once('$routeChangeSuccess', function () {
+ 
+			console.log($routeParams)
 			
 			loginSessionService.login($routeParams.canvasId, function(canvasId) {
 				
-				loadCanvas(canvasId);
+				console.log('callback of canvasId: '+canvasId)
+				
+				if (canvasId) {
+					loadCanvas(canvasId);	
+				}
+				
 				
 			});
 
@@ -36,10 +45,11 @@ class MainController {
 			
 			Meteor.call('getLatestSketch', canvasId, function(err, latestSketch) {	
 		
+				console.log('hide loader and show drawing');
+				
 				$rootScope.$apply(function() {
 					hideLoader();
 				})
-				
 			
 				if (latestSketch){
 					console.log('update drawing');
@@ -64,7 +74,9 @@ angular.module('sketcher', [
 	angularMeteor,
 	angularRoute,
 	angularMaterial,
-
+	
+	angularOnce.name,
+	
 	sketchCanvas.name,
 	sketchMenu.name,
 	
