@@ -46,16 +46,16 @@ class MainController {
 			Meteor.call('getLatestSketch', canvasId, function(err, latestSketch) {	
 		
 				console.log('hide loader and show drawing');
-				
-				$rootScope.$apply(function() {
-					hideLoader();
-				})
 			
 				if (latestSketch){
 					console.log('update drawing');
 					 $rootScope.canvas.loadSnapshot(JSON.parse(latestSketch.canvasData));
 					 
 				}
+				
+				$rootScope.$apply(function() {
+					hideLoader();
+				})
 				
 			});
 		}
