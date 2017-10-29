@@ -90,7 +90,7 @@ class SketcherMenuController {
 		
 			
 			$rootScope.canvas.clear();
-//			$rootScope.canvas.trigger('drawEnd', {});
+
 			
 			var canvasId = shortid.generate();
 			console.log(canvasId)
@@ -110,6 +110,7 @@ class SketcherMenuController {
 		$ctrl.undoSketch = function() {
 			
 			$rootScope.canvas.undo();
+			$rootScope.canvas.trigger('drawEnd', {});
 		}
 		
 		$ctrl.setPencil();
