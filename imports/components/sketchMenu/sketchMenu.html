@@ -1,7 +1,7 @@
 
 
 
-<md-button ng-hide="$ctrl.showLoader" class="md-fab md-mini md-primary md-fab-top-right" aria-label="Undo"
+<md-button ng-hide="$ctrl.showLoader" class="md-fab md-mini md-primary md-fab-top-right transparant-grey" aria-label="Undo"
 			ng-click="$ctrl.undoSketch()">
 		    <md-icon md-font-set="material-icons">undo</md-icon>
 		</md-button>
@@ -40,7 +40,7 @@
 		
 		
 		
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Pen" ng-click="$ctrl.setPencil()" ng-disabled=''>
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant" aria-label="Pen" ng-click="$ctrl.setPencil()" ng-disabled=''>
 		
 			<svg style="margin-top:10px" width="33px" height="33px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 511.988 511.988" style="enable-background:new 0 0 511.988 511.988;" xml:space="preserve" width="512px" height="512px">
 				<path d="M504.501,55.791L456.288,7.492c-9.995-9.982-26.186-9.982-36.181,0L50.784,376.729c-0.817,0.829-1.456,1.816-1.877,2.901    L0.608,500.292c-1.744,4.378,0.392,9.341,4.77,11.085c1.007,0.401,2.082,0.607,3.166,0.606c1.081,0.003,2.152-0.2,3.157-0.597    l120.661-48.299c1.085-0.421,2.072-1.06,2.901-1.877L504.501,91.972C514.484,81.977,514.484,65.786,504.501,55.791z     M389.899,61.764l12.032,12.032L97.973,377.839c-2.439-5.353-6.748-9.631-12.117-12.032L389.899,61.764z M23.819,488.175    l14.08-35.072c9.833,3.429,17.563,11.159,20.992,20.992L23.819,488.175z M129.12,443.033l-4.779,4.779L74.677,467.78    c-5.057-14.219-16.245-25.407-30.464-30.464l19.883-49.749l4.779-4.779c3.065-3.58,8.452-3.996,12.032-0.931    s3.996,8.452,0.931,12.032c-0.286,0.334-0.597,0.645-0.931,0.931c-3.346,3.323-3.365,8.729-0.043,12.075    c3.323,3.346,8.729,3.365,12.075,0.043c3.065-3.58,8.452-3.996,12.032-0.931c3.58,3.065,3.996,8.452,0.931,12.032    c-0.286,0.334-0.597,0.645-0.931,0.931c-3.323,3.346-3.303,8.752,0.043,12.075c3.346,3.323,8.752,3.303,12.075-0.043    c3.328-3.309,8.704-3.309,12.032,0C132.428,434.33,132.428,439.705,129.12,443.033z M122.037,401.988    c-2.398-5.351-6.681-9.634-12.032-12.032L414.048,85.913l12.032,12.032L122.037,401.988z M146.187,426.137    c-1.202-2.648-2.847-5.072-4.864-7.168c-2.101-2.05-4.559-3.699-7.253-4.864l304.128-304.043l12.032,12.032L146.187,426.137z     M492.469,79.855l-30.208,30.208l-60.331-60.331l30.208-30.208c3.328-3.309,8.704-3.309,12.032,0l48.299,48.299    C495.778,71.151,495.778,76.526,492.469,79.855z" fill="#FFFFFF"/>
@@ -50,7 +50,7 @@
 		
 		
 		
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Pen" ng-click="$ctrl.setPen()" ng-disabled=''>
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant" aria-label="Pen" ng-click="$ctrl.setPen()" ng-disabled=''>
 			
 			<svg style="margin-top:10px" width="33px" height="33px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 511.98 511.98" style="enable-background:new 0 0 511.98 511.98;" xml:space="preserve" >
 				<path d="M499.174,13.742c-8.634-8.846-20.492-13.805-32.853-13.739c-13.365-0.156-26.238,5.036-35.755,14.421l-86.187,86.187    L62.78,376.75c-0.431,0.496-0.803,1.04-1.109,1.621c0,0-0.427,0-0.597,0.683L0.913,499.63c-2.108,4.215-0.399,9.341,3.816,11.449    c2.581,1.291,5.64,1.189,8.13-0.27l114.688-66.389l0.427-0.683c0.357-0.203,0.7-0.431,1.024-0.683l191.147-185.6l6.144,6.144    c3.328,3.309,8.704,3.309,12.032,0l126.72-127.061c7.638-7.676,9.62-19.329,4.949-29.099l28.245-28.245    C516.177,61.211,516.592,32.231,499.174,13.742z M28.902,481.795l42.667-84.651l37.717,38.059L28.902,481.795z M332.348,245.422    l-6.059-6.059l-6.059-6.059l12.032-12.032l12.032,12.032L332.348,245.422z M453.239,124.54c-0.102,0.105-0.207,0.207-0.315,0.306    l-96.512,96.512l-12.032-12.032l54.272-54.272l42.667-42.667c2.785-2.551,6.916-2.968,10.155-1.024    c0.581,0.306,1.125,0.678,1.621,1.109C456.466,115.765,456.531,121.168,453.239,124.54z" fill="#FFFFFF"/>
@@ -59,7 +59,7 @@
 		</md-button>	
 		
 		
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Marker" ng-click="$ctrl.setMarker()" ng-disabled=''>
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant" aria-label="Marker" ng-click="$ctrl.setMarker()" ng-disabled=''>
 			
 			<svg style="margin-top:10px" width="33px" height="33px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 511.201 511.201" style="enable-background:new 0 0 511.201 511.201;" xml:space="preserve" >
 				<path d="M83.984,483.111c18.71-17.345,43.54-26.553,69.035-25.6c9.894-0.006,19.761,1.024,29.44,3.072    c10.169,8.198,24.879,7.426,34.133-1.792l12.032-12.117l276.907-320c8.198-10.169,7.426-24.879-1.792-34.133l-79.616-81.152    c-9.491-9.528-24.737-10.087-34.901-1.28L73.146,288.892l-1.28,1.109l-0.768,0.853l-11.349,11.179    c-9.218,9.254-9.99,23.965-1.792,34.133c2.389,10.496,12.117,64-22.357,98.475c-2.415,2.578-2.992,6.378-1.451,9.557L2.49,475.687    c-3.328,3.337-3.319,8.74,0.018,12.068c0.644,0.642,1.387,1.178,2.201,1.585l34.133,17.067c1.189,0.609,2.504,0.931,3.84,0.939    h273.067c4.713,0,8.533-3.82,8.533-8.533s-3.82-8.533-8.533-8.533H67.002L74,484.647    C77.306,486.371,81.349,485.749,83.984,483.111z M53.434,440.444c37.973-44.971,21.419-107.691,20.651-110.421    c-0.353-1.405-1.058-2.697-2.048-3.755c-1.65-1.617-2.573-3.834-2.56-6.144c-0.013-2.268,0.877-4.448,2.475-6.059l5.973-5.973    l132.693,132.693l-6.059,5.973c-3.328,3.309-8.704,3.309-12.032,0c-1.09-1.028-2.405-1.788-3.84-2.219    c-11.719-2.747-23.718-4.122-35.755-4.096c-27.066-0.891-53.565,7.882-74.752,24.747L53.434,440.444z" fill="#FFFFFF"/>
@@ -67,7 +67,7 @@
 		
 		</md-button>
 	
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Eraser" ng-click="$ctrl.setEraser();" ng-disabled=''>
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant-grey" aria-label="Eraser" ng-click="$ctrl.setEraser();" ng-disabled=''>
 
 			<svg style="margin-top:14px" width="28px" height="28px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.067 512.067" style="enable-background:new 0 0 512.067 512.067;" xml:space="preserve" ><g><g>
 				<path d="M499.575,187.784c16.656-16.661,16.656-43.669,0-60.331L384.887,12.509c-16.661-16.656-43.669-16.656-60.331,0    L96.034,241.117l-83.541,83.2c-16.656,16.661-16.656,43.669,0,60.331L127.18,499.592c6.299,6.231,14.381,10.347,23.125,11.776    c1.052,0.448,2.184,0.681,3.328,0.683h274.859c4.713,0,8.533-3.821,8.533-8.533s-3.82-8.533-8.533-8.533H192.034l17.067-17.067    h174.933c4.713,0,8.533-3.82,8.533-8.533s-3.82-8.533-8.533-8.533H226.252l17.067-17.067h140.715c4.713,0,8.533-3.82,8.533-8.533    s-3.82-8.533-8.533-8.533H260.386l10.667-10.581L499.575,187.784z M352.325,45.241c0.016-0.017,0.033-0.033,0.049-0.049    c3.319-3.346,8.722-3.368,12.068-0.049c0.017,0.016,0.033,0.033,0.049,0.049l102.4,102.4c3.346,3.319,3.368,8.722,0.049,12.068    c-0.016,0.017-0.033,0.033-0.049,0.049c-3.319,3.346-8.722,3.368-12.068,0.049c-0.017-0.016-0.033-0.033-0.049-0.049l-102.4-102.4    C349.029,53.99,349.007,48.587,352.325,45.241z M175.394,487.474c-10.095,9.655-26.001,9.655-36.096,0L24.61,372.786    c-9.926-9.985-9.926-26.111,0-36.096l77.824-77.483L252.876,409.65L175.394,487.474z" fill="#FFFFFF"/></g>
@@ -97,17 +97,17 @@
 
   <md-fab-actions>
   
-  		<!-- <md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Undo"
+  		<!-- <md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant" aria-label="Undo"
 			ng-click="$ctrl.undoSketch()">
 		    <md-icon md-font-set="material-icons">undo</md-icon>
 		</md-button> -->
   
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Share Sketch"
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary transparant" aria-label="Share Sketch"
 			ng-click="$ctrl.clearSketch()">
 		    <md-icon md-font-set="material-icons">delete</md-icon>
 		</md-button>
 		
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Load Image"
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary tranpsarant" aria-label="Load Image"
 	 		ng-click="$ctrl.shareSketch()">
 			<md-icon md-font-set="material-icons">photo</md-icon>
 		</md-button>
