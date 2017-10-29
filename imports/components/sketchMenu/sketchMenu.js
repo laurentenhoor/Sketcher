@@ -9,6 +9,8 @@ import { Cookies } from 'meteor/ostrio:cookies';
 const cookies = new Cookies();
 import shortid from 'shortid';
 
+import angularHammer from 'angular-hammer';
+
 
 
 
@@ -109,6 +111,11 @@ class SketcherMenuController {
 
 		}
 		
+		$ctrl.undoSketch = function() {
+			
+			$rootScope.canvas.undo();
+		}
+		
 		$ctrl.setPencil();
 		
 	}
@@ -118,6 +125,7 @@ class SketcherMenuController {
 
 export default angular.module('sketcher.sketchMenu', [
   angularMeteor,
+  angularHammer, 
 ])
 .component('sketchMenu', {
 	templateUrl : template,

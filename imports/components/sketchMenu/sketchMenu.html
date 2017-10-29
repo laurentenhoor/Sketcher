@@ -91,12 +91,17 @@
 
   <md-fab-actions>
   
+  		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Undo"
+			ng-click="$ctrl.undoSketch()">
+		    <md-icon md-font-set="material-icons">undo</md-icon>
+		</md-button>
+  
 		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Share Sketch"
 			ng-click="$ctrl.clearSketch()">
 		    <md-icon md-font-set="material-icons">delete</md-icon>
 		</md-button>
 		
-		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Share Image"
+		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Load Image"
 	 		ng-click="$ctrl.shareSketch()">
 			<md-icon md-font-set="material-icons">photo</md-icon>
 		</md-button>
@@ -105,10 +110,6 @@
   </md-fab-actions>
   
 </md-fab-speed-dial>
-
-
-
-
 
 <!-- 		<md-button ng-click="$ctrl.toggleTool()" class="md-fab md-secondary" aria-label="Eraser">
 

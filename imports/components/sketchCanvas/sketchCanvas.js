@@ -12,7 +12,10 @@ import sizeof from 'object-sizeof';
 import template 	from './sketchCanvas.html';
 
 import { Sketches } from '../../api/sketches.js';
-import { Random } from 'meteor/random'
+import { Random } from 'meteor/random';
+
+
+import angularHammer from 'angular-hammer';
 
 
 class SketchCanvasController {
@@ -32,6 +35,14 @@ class SketchCanvasController {
 						
 			}
 		});
+		
+		$ctrl.undoSketch = function() {
+			// first erase the artifacts due to the double tap,
+			$rootScope.canvas.undo();
+			$rootScope.canvas.undo();
+			// then remove the previous action
+			$rootScope.canvas.undo();
+		}
 		
 			
 		$rootScope.canvas = LC.init(document.getElementsByClassName('sketch-canvas')[0], {
@@ -65,6 +76,7 @@ class SketchCanvasController {
 
 export default angular.module('sketcher.sketchCanvas', [
   angularMeteor,
+  angularHammer,
 ])
 .component('sketchCanvas', {
 	templateUrl : template,
