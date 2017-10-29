@@ -1,5 +1,11 @@
 
 
+
+<md-button ng-hide="$ctrl.showLoader" class="md-fab md-mini md-primary md-fab-top-right" aria-label="Undo"
+			ng-click="$ctrl.undoSketch()">
+		    <md-icon md-font-set="material-icons">undo</md-icon>
+		</md-button>
+
 <md-fab-speed-dial md-direction="up" class="md-fling md-fab-bottom-left">
 
 
@@ -91,10 +97,10 @@
 
   <md-fab-actions>
   
-  		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Undo"
+  		<!-- <md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Undo"
 			ng-click="$ctrl.undoSketch()">
 		    <md-icon md-font-set="material-icons">undo</md-icon>
-		</md-button>
+		</md-button> -->
   
 		<md-button ng-hide="$ctrl.showLoader" class="md-fab md-primary" aria-label="Share Sketch"
 			ng-click="$ctrl.clearSketch()">

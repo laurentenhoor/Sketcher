@@ -131,6 +131,7 @@ module.exports = LiterallyCanvas = (function() {
   };
 
   LiterallyCanvas.prototype.trigger = function(name, data) {
+//	console.log(name);
     this.canvas.dispatchEvent(new CustomEvent(name, {
       detail: data
     }));

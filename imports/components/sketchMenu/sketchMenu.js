@@ -9,10 +9,6 @@ import { Cookies } from 'meteor/ostrio:cookies';
 const cookies = new Cookies();
 import shortid from 'shortid';
 
-import angularHammer from 'angular-hammer';
-
-
-
 
 class SketcherMenuController {
 	
@@ -124,8 +120,7 @@ class SketcherMenuController {
 }
 
 export default angular.module('sketcher.sketchMenu', [
-  angularMeteor,
-  angularHammer, 
+  angularMeteor, 
 ])
 .component('sketchMenu', {
 	templateUrl : template,
